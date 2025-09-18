@@ -64,25 +64,25 @@ DWORD WINAPI thread_function(LPVOID);
 int main(int argc, char* argv[])
 {
     struct addrinfo* ps_address;
-    int                       i_addrlen;
-    struct sockaddr_storage   s_client; // clients's address information
+    int i_addrlen;
+    struct sockaddr_storage s_client; // clients's address information
     char* nc_error;
-    DWORD                    dw_error;
-    struct addrinfo           s_hints;
-    int                       i_lc;
-    int                       i_location; // location in thread list of new thread
-    SOCKET                      new_fd;  // new connection on new_fd
+    DWORD dw_error;
+    struct addrinfo s_hints;
+    int i_lc;
+    int i_location; // location in thread list of new thread
+    SOCKET new_fd;  // new connection on new_fd
     struct addrinfo* ps_servinfo;
-    char                     ac_server[INET6_ADDRSTRLEN];
-    socklen_t                   sin_size;
-    SOCKET                      sockfd;  // listen on sock_fd
-    int                       i_status;
-    DWORD                    dw_status; // wait status of thread
-    struct thread_info       as_threads[BACKLOG];
-    HANDLE                    h_thread;
-    DWORD                    dw_thread_id;
-    WSADATA                   s_wsaData;
-    BOOL                      B_yes = TRUE;
+    char ac_server[INET6_ADDRSTRLEN];
+    socklen_t sin_size;
+    SOCKET sockfd;  // listen on sock_fd
+    int i_status;
+    DWORD dw_status; // wait status of thread
+    struct thread_info as_threads[BACKLOG];
+    HANDLE h_thread;
+    DWORD dw_thread_id;
+    WSADATA s_wsaData;
+    BOOL B_yes = TRUE;
     /*                                                                            */
     /* The program does not expect any arguments on the command line:             */
     /*                                                                            */
@@ -271,7 +271,8 @@ int main(int argc, char* argv[])
             {
                 inet_ntop(s_client.ss_family,
                     get_in_addr((struct sockaddr*)&s_client),
-                    ac_server, sizeof(ac_server));
+                    ac_server,
+					sizeof(ac_server));
                 printf("Got connection from %s\n", ac_server);
                 /*                                                                            */
                 /* Start a thread that will send the message to the client:                   */
@@ -354,11 +355,9 @@ int active_thread_count
 /*                                                                            */
 void add_socket_to_thread_list
 (
-    SOCKET                 new_fd,  /* in   - Socket to which thread should    */
-    /*        send data                        */
-    struct thread_info* ns_threads, /* both - List of threads                  */
-    int* pi_location /* out  - Location in list to which the    */
-    /*        socket was added                 */
+    SOCKET new_fd,  /* in   - Socket to which thread should send data         */
+    struct thread_info* ns_threads, /* both - List of threads                 */
+    int* pi_location /* out  - Location in list to which the socket was added */
 )
 {
     int i_lc;
