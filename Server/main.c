@@ -143,8 +143,7 @@ int main(int argc, char* argv[])
     if (i_status != 0)
     {
         dw_error = (DWORD)WSAGetLastError();
-        get_msg_text(dw_error,
-            &nc_error);
+        get_msg_text(dw_error, &nc_error);
         fprintf(stderr, "getaddrinfo failed with code %d.\n", i_status);
         fprintf(stderr, "%s\n", nc_error);
         LocalFree(nc_error);
@@ -178,8 +177,7 @@ int main(int argc, char* argv[])
         if (i_status == SOCKET_ERROR)
         {
             dw_error = (DWORD)WSAGetLastError();
-            get_msg_text(dw_error,
-                &nc_error);
+            get_msg_text(dw_error, &nc_error);
             fprintf(stderr, "setsockopt failed with code %ld.\n", dw_error);
             fprintf(stderr, "%s\n", nc_error);
             LocalFree(nc_error);
@@ -196,8 +194,7 @@ int main(int argc, char* argv[])
         if (i_status == SOCKET_ERROR)
         {
             dw_error = (DWORD)WSAGetLastError();
-            get_msg_text(dw_error,
-                &nc_error);
+            get_msg_text(dw_error, &nc_error);
             fprintf(stderr, "bind failed with code %ld.\n", dw_error);
             fprintf(stderr, "%s\n", nc_error);
             LocalFree(nc_error);
@@ -261,8 +258,7 @@ int main(int argc, char* argv[])
             if (new_fd == INVALID_SOCKET)
             {
                 dw_error = (DWORD)WSAGetLastError();
-                get_msg_text(dw_error,
-                    &nc_error);
+                get_msg_text(dw_error, &nc_error);
                 fprintf(stderr, "accept failed with code %ld.\n", dw_error);
                 fprintf(stderr, "%s\n", nc_error);
                 LocalFree(nc_error);
@@ -288,8 +284,7 @@ int main(int argc, char* argv[])
                 if (h_thread == NULL)
                 {
                     dw_error = GetLastError();
-                    get_msg_text(dw_error,
-                        &nc_error);
+                    get_msg_text(dw_error, &nc_error);
                     fprintf(stderr, "CreateThread failed with code %ld.\n", dw_error);
                     fprintf(stderr, "%s\n", nc_error);
                     closesocket(new_fd); // No longer needed
@@ -440,8 +435,7 @@ DWORD WINAPI thread_function(LPVOID lpParam)
     if (i_status == SOCKET_ERROR)
     {
         dw_error = (DWORD)WSAGetLastError();
-        get_msg_text(dw_error,
-            &nc_error);
+        get_msg_text(dw_error, &nc_error);
         fprintf(stderr, "send failed with code %ld\n", dw_error);
         fprintf(stderr, "%s\n", nc_error);
         LocalFree(nc_error);
