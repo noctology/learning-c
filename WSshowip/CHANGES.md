@@ -40,7 +40,7 @@ Port showip.c to Windows:
 
    Note that gai_strerror is not thread safe and its use is not recommended.
 
-   WSAStartup  - 0 = Success.  On error, the function returns the erorr code.
+   WSAStartup  - 0 = Success.  On error, the function returns the error code.
                  Do NOT call WSAGetLastError.
    getaddrinfo - 0 = Success.  This function returns an error code but it may
                  not be the correct error code.  Call WSAGetLastError.
